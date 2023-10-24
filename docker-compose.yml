@@ -1,0 +1,19 @@
+version: "3.8"
+ 
+services:
+  adminer:
+    image: adminer
+    ports:
+      - 8088:8080
+    links:
+      - postgresql:localhost
+ 
+  postgresql:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    environment:
+      - PGDATA=/postgresql
+      - PG_PASSWORD=postgres
+    volumes:
+      - ./tmp/data/postgresql:/postgresql
